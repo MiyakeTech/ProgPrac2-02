@@ -18,6 +18,7 @@ public class MyView extends View {
     // イベント発生時の X 座標、Y 座標を保存するための動的配列
     private ArrayList array_x, array_y;
     private ArrayList array_status;
+
     // コンストラクタ
     public MyView(Context context) {
         super(context);
@@ -58,6 +59,8 @@ public class MyView extends View {
         return true;
     }
 
+
+
     // ビューの描画を行うときに呼ばれるメソッド
     @SuppressLint("DrawAllocation")
     @Override
@@ -75,15 +78,15 @@ public class MyView extends View {
 
         // 配列内の座標を読み出して線（軌跡）を描画
         for (int i = 1; i < array_status.size(); i++) {
-        // 描画するように(true)状態値が与えられているとき
-        // 一度離してしてから次に押されるまでの移動分は描画しない
+            // 描画するように(true)状態値が与えられているとき
+            // 一度離してしてから次に押されるまでの移動分は描画しない
             if ((Boolean) array_status.get(i)) {
                 // 開始点の終了点の座標の値を取得
                 int x1 = (Integer) array_x.get(i - 1);
                 int x2 = (Integer) array_x.get(i);
                 int y1 = (Integer) array_y.get(i - 1);
                 int y2 = (Integer) array_y.get(i);
-// 線を描画
+                // 線を描画
                 canvas.drawLine(x1, y1, x2, y2, p);
             }
         }
